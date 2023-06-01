@@ -18,14 +18,16 @@ const handler = NextAuth({
     },
     async signIn({ profile }) {
       try {
-        console.log("here");
         await connectToDB();
 
         const userExists = await User.findOne({ email: profile.email });
         if (!userExists) {
           await User.create({
             email: profile.email,
-            username: profile.name.replace(" ", "").toLowerCase(),
+            username: profile.name
+              .replace(" ", "")
+              .substring(0, 20)
+              .toLowerCase(),
             image: profile.picture,
           });
         }
