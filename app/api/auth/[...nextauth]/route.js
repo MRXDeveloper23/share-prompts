@@ -26,7 +26,7 @@ const handler = NextAuth({
             email: profile.email,
             username: profile.name
               .replace(" ", "")
-              .substring(0, 20)
+              .substring(0, 21)
               .toLowerCase(),
             image: profile.picture,
           });
